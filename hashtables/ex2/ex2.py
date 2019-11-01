@@ -6,6 +6,7 @@ from hashtables import (HashTable,
                         hash_table_resize)
 
 
+
 class Ticket:
     def __init__(self, source, destination):
         self.source = source
@@ -16,8 +17,16 @@ def reconstruct_trip(tickets, length):
     hashtable = HashTable(length)
     route = [None] * length
 
-    """
-    YOUR CODE HERE
-    """
+    for i in range(length):
+        hash_table_insert(hashtable, tickets[i].source, tickets[i].destination)
 
+    source = "NONE"
+
+    for j in range(length):
+        destination = hash_table_retrieve(hashtable, source)
+        source = destination
+        route[j] = destination
+        
+    print(route)
+    
     return route
